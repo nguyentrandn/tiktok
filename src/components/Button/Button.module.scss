@@ -2,8 +2,9 @@
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    font-size: 1.6rem;
+    font-size: 1.4rem;
     font-weight: 700;
+    font-family: "ProximaNova", sans-serif;
     min-width: 100px;
     padding: 9px 16px;
     border-radius: 4px;
@@ -13,7 +14,7 @@
     user-select: none;
 
     + .wrapper{
-        margin-left: 8px;
+        margin-left: 18px;
     }
     &.disabled{
         pointer-events: none;
@@ -23,6 +24,11 @@
 //
 .icon + .title , .title + .icon{
     margin-left: 8px;
+}
+.icon{
+    display: inline-block;
+    width: 24px;
+    text-align: center;
 }
 
 // buton Types
@@ -55,12 +61,20 @@
         border-color: currentColor;
     }
 }
+.outlineBlack{
+    color: var(--black);
+    border: 1px solid rgba(22, 24, 35, 0.12);
+
+    &:hover{
+        background-color: rgba(22, 24, 35, 0.03);
+        border-color: rgba(22, 24, 35, 0.12);
+    }
+}
 .text{
     &:hover{
         text-decoration: underline;
     }
 }
-// Disabled
 
 // buton Sizes
 .small{

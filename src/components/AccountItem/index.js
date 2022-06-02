@@ -5,11 +5,13 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import classNames from "classnames/bind";
 import styles from './Accountitem.module.scss'
 
+
+
 const cx = classNames.bind(styles)
 function AccountItem() {
     return ( 
     <div className={cx('wrapper')}>
-        <img src='https://p16-sign-va.tiktokcdn.com/tos-useast2a-avt-0068-giso/ea0854578085ab26effc2c7b8cefa270~c5_300x300.webp?x-expires=1654070400&x-signature=p7o1mkB89ef5NqRnkuTaGwlg%2Fl8%3D' alt="" className={cx('avatar')} />
+        <img src='https://scontent.fdad3-4.fna.fbcdn.net/v/t39.30808-6/241660859_1221853268314489_3082811399413781660_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=174925&_nc_ohc=zelYAux4mSoAX9kZ0QC&_nc_ht=scontent.fdad3-4.fna&oh=00_AT-XmJ9k-EcTSmdEa0656n_Ug4FFcXlo0Nw2KncnPznf7g&oe=629D35AD' alt="" className={cx('avatar')} />
         <div className={cx('info')}>
             <h4 className={cx('name')}>
                 <span> Nguyen van A</span>

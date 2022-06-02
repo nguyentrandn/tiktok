@@ -1,6 +1,7 @@
 import classNames from "classnames/bind";
 import styles from "./Button.module.scss";
 import { Link } from "react-router-dom";
+import { faLeaf } from "@fortawesome/free-solid-svg-icons";
 
 const cx = classNames.bind(styles);
 function Button({
@@ -10,6 +11,7 @@ function Button({
   large = false,
   primary = false,
   outline = false,
+  outlineBlack =false,
   text = false,
   rounded = false,
   disabled = false,
@@ -46,6 +48,7 @@ function Button({
   const classes = cx("wrapper", {
     primary: primary,
     outline,
+    outlineBlack,
     small,
     large,
     text,
