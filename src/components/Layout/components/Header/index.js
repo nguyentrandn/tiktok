@@ -54,11 +54,11 @@ function Header() {
 
 const [searchResult, setSearchResult] = useState([])
 
-const curentuser = true
+const curentuser = false
 
 useEffect(() =>{
     setTimeout(() =>{
-        setSearchResult([1])
+        setSearchResult([])
     })
 }, [])
 
@@ -136,12 +136,12 @@ const userMenu = [
                         <>
                             <Button outlineBlack leftIcon={<FontAwesomeIcon icon={faPlus}/>}>Upload</Button>
 
-                            <Tippy content="Message" placement='bottom' delay={200}>
+                            <Tippy content="Message" offset={[0, 7]} placement='bottom' delay={200}>
                                 <button className={cx('action-btn')}>
                                     <MessageIcon />
                                 </button>
                             </Tippy>
-                            <Tippy content="Inbox" placement='bottom' delay={200}>
+                            <Tippy content="Inbox" offset={[0, 1]} placement='bottom' delay={200}>
                                 <button className={cx('action-btn')}>
                                     <InboxIcon />
                                 </button>
