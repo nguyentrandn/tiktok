@@ -1,7 +1,5 @@
-import {useEffect, useState} from 'react'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import { faCircleQuestion, faCircleXmark, faCoins, faEarthAsia, faEllipsisVertical,faGear, faKeyboard,  faPlus,  faSignOut, faSpinner, faUser } from '@fortawesome/free-solid-svg-icons'
-import {Wrapper as PopperWrapper} from '~/components/Popper'
+import { faCircleQuestion, faCoins, faEarthAsia, faEllipsisVertical,faGear, faKeyboard,  faPlus,  faSignOut, faUser } from '@fortawesome/free-solid-svg-icons'
 
 import Button from '~/components/Button'
 import className from 'classnames/bind'
@@ -9,14 +7,10 @@ import style from './Header.module.scss'
 import images from '~/assets/images'
 import 'tippy.js/dist/tippy.css';
 import Tippy from '@tippyjs/react';
-import HeadlessTippy from '@tippyjs/react/headless';
-import AccountItem from '~/components/AccountItem'
 import Menu from '~/components/Popper/Menu'
-import { MessageIcon } from '~/components/Icons/MessageIcon'
-import { InboxIcon } from '~/components/Icons/InboxIcon'
-import { SearchIcon } from '~/components/Icons/SearchIcon'
+import { MessageIcon, InboxIcon } from '~/components/Icons'
 import Image from '~/components/Image'
-
+import Search from '~/components/Layout/Search'
 
 const cx = className.bind(style) //dùng đc dấu (-)
 
@@ -52,15 +46,10 @@ const MENU_ITEM = [
 ]
 function Header() {
 
-const [searchResult, setSearchResult] = useState([])
 
-const curentuser = false
+const curentuser = true
 
-useEffect(() =>{
-    setTimeout(() =>{
-        setSearchResult([])
-    })
-}, [])
+
 
 const handleMenuChange = (menuItem) =>{
     console.log(menuItem);
@@ -102,33 +91,10 @@ const userMenu = [
             <div className={cx('logo')}>
                 <img src={images.logo} alt='images'/>
             </div>
-            <HeadlessTippy 
-                interactive='true'
-                visible={searchResult.length > 0} // nếu ô search có chữ thì mơi hiện dropbox
-                render={attrs => (
-                    <div className={cx('search-result')} tabIndex="-1" {...attrs}>
-                            <PopperWrapper>
-                                <h4 className={cx('search-title')}>
-                                    Accounts
-                                </h4>
-                                <AccountItem />
-                                <AccountItem />
-                                <AccountItem />
-                            </PopperWrapper>
-                        </div>
-                )}>
-                <div className={cx('search')}>
-                    <input placeholder='Search accound and video...' spellCheck={false}/>
-                    <button className={cx('clear')}>
-                        <FontAwesomeIcon icon={faCircleXmark} />
-                    </button>
-                        <FontAwesomeIcon icon={faSpinner}  className={cx('loading')}/>
-                        <button className={cx('search-btn')}>
-                            <SearchIcon />
-                        </button>
-                </div>
-            </HeadlessTippy>
-            
+
+            {/* Search */}
+                <Search />
+            {/* -------------------- */}
             {/* Check xem đã dăng nhập hay chưa á mà */}
             <div className={cx('action')}>
                 { curentuser ? (
@@ -144,6 +110,7 @@ const userMenu = [
                             <Tippy content="Inbox" offset={[0, 1]} placement='bottom' delay={200}>
                                 <button className={cx('action-btn')}>
                                     <InboxIcon />
+                                    <span className={cx('badge')}>12</span>
                                 </button>
                             </Tippy>
                         </>
