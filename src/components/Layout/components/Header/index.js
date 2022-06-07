@@ -1,16 +1,18 @@
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import { faCircleQuestion, faCoins, faEarthAsia, faEllipsisVertical,faGear, faKeyboard,  faPlus,  faSignOut, faUser } from '@fortawesome/free-solid-svg-icons'
+import { Link } from 'react-router-dom'
+import { MessageIcon, InboxIcon } from '~/components/Icons'
+import 'tippy.js/dist/tippy.css';
 
 import Button from '~/components/Button'
 import className from 'classnames/bind'
 import style from './Header.module.scss'
 import images from '~/assets/images'
-import 'tippy.js/dist/tippy.css';
 import Tippy from '@tippyjs/react';
 import Menu from '~/components/Popper/Menu'
-import { MessageIcon, InboxIcon } from '~/components/Icons'
 import Image from '~/components/Image'
-import Search from '~/components/Layout/Search'
+import Search from '~/components/Layout/components/Search'
+import routesConfig from "~/config/routes";
 
 const cx = className.bind(style) //dùng đc dấu (-)
 
@@ -89,7 +91,7 @@ const userMenu = [
     return  <header className={cx('wrapper')}>
         <div className={cx('inner')}>
             <div className={cx('logo')}>
-                <img src={images.logo} alt='images'/>
+                <Link to={routesConfig.home} className={cx('logo-link')}><img src={images.logo} alt='images'/></Link>
             </div>
 
             {/* Search */}
@@ -129,10 +131,8 @@ const userMenu = [
                             alt='Avatar User' 
                             src='https://scontent.fdad3-5.fna.fbcdn.net/v/t1.6435-9/195651511_1159626061203877_3862803406390125903_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=174925&_nc_ohc=RiyYT4W3VCMAX9BuBDA&_nc_ht=scontent.fdad3-5.fna&oh=00_AT9u7swbyvPMra9cfYogRCD_nhCjsa9I4D4x9_vEWgrEqw&oe=62BF1E73'
                             //fallback= 'https://static.fullstack.edu.vn/static/media/f8-icon.7ad2b161d5e80c87e516.png'
-                        />   
-                                              
+                        />                                                
                     ) : (
-
                         <button className={cx('more-btn')}>
                             <FontAwesomeIcon icon={faEllipsisVertical} />
                         </button>

@@ -11,7 +11,7 @@ const cx = className.bind(style); //dùng đc dấu (-)
 
 const defaultFn = () =>{}
 
-function Menu({ children, items = [] , onChange = defaultFn }) {
+function Menu({ children, items = [] ,hideOnClick = false, onChange = defaultFn }) {
 
   const [history, setHistory] = useState([{ data: items }]) // truyền 1 Object đại diện dữ liệu cho trang hiện tại
   const current = history[history.length - 1]
@@ -32,6 +32,7 @@ function Menu({ children, items = [] , onChange = defaultFn }) {
   return (
     <Tippy  
       //visible //luon hien
+      hideOnClick= {hideOnClick}
       delay={[0, 700]}
       offset={[15, 7]} // chinh chieu ngang vs cao
       interactive

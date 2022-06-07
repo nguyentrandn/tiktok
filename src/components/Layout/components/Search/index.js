@@ -7,7 +7,8 @@ import {Wrapper as PopperWrapper} from '~/components/Popper'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import styles from './Search.module.scss'
 import classNames from 'classnames/bind'
-
+import {useDebounce} from '~/hoocks'
+import * as searchServices from '~/apiServices/searchServices'
 
 const cx = classNames.bind(styles)
 
@@ -17,28 +18,32 @@ function Search() {
   const [searchResult, setSearchResult] = useState([]) //kết quả tìm kiếm đc 
   const [showResult , setShowResult] = useState(true)
   const [loading , setLoading] = useState(false)
+  const debounce = useDebounce(searchValue, 500) // khi nguoi dung ngung go 500ms thi moi goi API
 
 const inputRef = useRef()
 
 useEffect(() =>{
-  if (!searchValue) { 
+  if (!debounce) { 
     setSearchResult([])
     return
   }
 
-  setLoading(true)
+  const fetchApi = async () => {
+    //trc khi Api goi
+    setLoading(true)
 
-    fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(searchValue)}&type=less`)
-      .then(res => res.json())
-      .then(res => {
-        setSearchResult(res.data);
-        console.log(res.data);
-        setLoading(false)
-      })
-      .catch(() =>{
-        setLoading(false)
-      })
-}, [searchValue])
+    const result = await searchServices.search(debounce);
+    setSearchResult(result)
+
+    // sau khi Api dc goi
+    setLoading(false)
+  }
+  
+  fetchApi()
+
+    
+}, [debounce])
+
 // Clear Kết quả Tk
 const handleClear = () => {
     setSearchValue('');
@@ -62,6 +67,8 @@ const handleChange = (e) => {
       
   setSearchValue(value);
 };
+
+
 
   return (
     <HeadlessTippy
@@ -96,7 +103,7 @@ const handleChange = (e) => {
         )}
         
         { loading && <FontAwesomeIcon icon={faSpinner} className={cx("loading")} /> }
-        <button className={cx("search-btn")}>
+        <button className={cx("search-btn")} onMouseDown={e => e.preventDefault()}>
           <SearchIcon />
         </button>
       </div>
